@@ -1,53 +1,44 @@
-/* ========================================
-   HERO BLOCK
-   Элементы: title, text
-======================================== */
-
 .hero {
-  padding: var(--spacing-7xl) var(--spacing-5xl);
+  padding: 90px 40px;
 
-  background: linear-gradient(var(--color-gradient-overlay)),
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.6),
+      rgba(0,0,0,0.8)
+    ),
     url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600");
+
   background-size: cover;
   background-position: center;
 }
 
-/* ========================================
-   HERO__TITLE - элемент
-======================================== */
-
 .hero__title {
-  font-size: var(--font-size-6xl);
-  margin: 0 0 var(--spacing-xl);
-  max-width: 700px;
-  color: var(--color-text-primary);
-  font-weight: var(--font-weight-extra-bold);
-  line-height: 1.2;
-}
+  font-size: 64px;
 
-/* ========================================
-   HERO__TEXT - элемент
-======================================== */
+  margin: 0 0 20px;
+
+  max-width: 700px;
+
+  color: white;
+}
 
 .hero__text {
-  font-size: var(--font-size-xl);
-  color: var(--color-text-secondary);
-  max-width: 700px;
-  line-height: 1.7;
-  margin: 0;
-}
+  font-size: 20px;
 
-/* ========================================
-   RESPONSIVE
-======================================== */
+  color: #d0d0d0;
+
+  max-width: 700px;
+
+  line-height: 1.7;
+}
 
 @media (max-width: 768px) {
   .hero {
-    padding: var(--spacing-6xl) 20px;
+    padding: 60px 20px;
   }
 
   .hero__title {
-    font-size: var(--font-size-4xl);
+    font-size: 42px;
   }
 
   .hero__text {

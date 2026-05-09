@@ -1,120 +1,155 @@
 /* ========================================
    MODAL-TICKET BLOCK
-   Модальное окно для выбора мест
 ======================================== */
 
-.modal-ticket__overlay {
+.modal-ticket-overlay {
   position: fixed;
   inset: 0;
-  background: var(--color-modal-overlay);
+
+  background: rgba(0, 0, 0, 0.72);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   z-index: 5000;
+
   padding: 20px;
 }
 
 /* ========================================
-   MODAL-TICKET - основной контейнер
+   MODAL
 ======================================== */
 
 .modal-ticket {
   width: 100%;
   max-width: 760px;
-  background: var(--color-dark-tertiary);
-  border-radius: var(--border-radius-xl);
-  padding: var(--spacing-4xl);
-  border: 1px solid var(--color-dark-border-light);
-  box-shadow: var(--shadow-modal);
+
+  background: #171717;
+
+  border-radius: 28px;
+
+  padding: 30px;
+
+  border: 1px solid #2a2a2a;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.45);
 }
 
 /* ========================================
-   MODAL-TICKET__HEADER - элемент
+   HEADER
 ======================================== */
 
 .modal-ticket__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-sm);
+
+  margin-bottom: 10px;
 }
 
-.modal-ticket__header-title {
+.modal-ticket__title {
   margin: 0;
+
   font-size: 30px;
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+
+  color: white;
 }
 
-.modal-ticket__header-close {
-  background: none;
+.modal-ticket__close {
+  background: transparent;
+
   border: none;
-  color: var(--color-text-primary);
-  font-size: 24px;
+
+  color: #999;
+
+  font-size: 28px;
+
   cursor: pointer;
+
   padding: 0;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity var(--transition-fast);
 }
 
-.modal-ticket__header-close:hover {
-  opacity: 0.7;
+.modal-ticket__close:hover {
+  color: white;
+
+  transform: none;
 }
 
 /* ========================================
-   MODAL-TICKET__EVENT-TITLE - элемент
+   EVENT TITLE
 ======================================== */
 
 .modal-ticket__event-title {
-  color: var(--color-text-muted);
-  margin-bottom: var(--spacing-4xl);
-  font-size: var(--font-size-base);
+  color: #aaa;
+
+  margin-bottom: 30px;
+
+  font-size: 16px;
 }
 
 /* ========================================
-   MODAL-TICKET__SCREEN - элемент
+   SCREEN
 ======================================== */
 
 .modal-ticket__screen {
-  background: var(--color-dark-screen);
+  background: linear-gradient(
+    to right,
+    #444,
+    #777,
+    #444
+  );
+
   text-align: center;
-  padding: var(--spacing-md);
-  border-radius: var(--border-radius-md);
-  margin-bottom: var(--spacing-4xl);
-  color: var(--color-text-primary);
-  font-weight: var(--font-weight-bold);
+
+  padding: 14px;
+
+  border-radius: 14px;
+
+  margin-bottom: 30px;
+
+  color: white;
+
+  font-weight: bold;
+
   letter-spacing: 2px;
 }
 
 /* ========================================
-   MODAL-TICKET__SEATS-GRID - элемент
+   SEATS GRID
 ======================================== */
 
-.modal-ticket__seats-grid {
+.modal-ticket__grid {
   display: grid;
+
   grid-template-columns: repeat(8, 1fr);
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-4xl);
+
+  gap: 12px;
+
+  margin-bottom: 30px;
 }
 
 /* ========================================
-   MODAL-TICKET__SEAT - элемент
+   SEAT
 ======================================== */
 
 .modal-ticket__seat {
   height: 44px;
-  border-radius: var(--border-radius-sm);
+
+  border-radius: 12px;
+
   border: none;
-  background: var(--color-dark-seat);
-  color: var(--color-text-primary);
-  font-weight: var(--font-weight-bold);
+
+  background: #2b2b2b;
+
+  color: white;
+
+  font-weight: bold;
+
   cursor: pointer;
-  transition: transform var(--transition-fast);
-  font-size: 12px;
+
+  transition: 0.2s;
 }
 
 .modal-ticket__seat:hover {
@@ -122,64 +157,68 @@
 }
 
 .modal-ticket__seat--selected {
-  background: var(--color-success);
+  background: #00c853;
 }
 
 .modal-ticket__seat--occupied {
   background: #555;
+
   opacity: 0.45;
+
   cursor: not-allowed;
 }
 
-.modal-ticket__seat--occupied:hover {
-  transform: none;
-}
-
 /* ========================================
-   MODAL-TICKET__SUMMARY - элемент
+   SUMMARY
 ======================================== */
 
 .modal-ticket__summary {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: var(--spacing-2xl);
-  font-size: var(--font-size-lg);
-  color: var(--color-text-primary);
-}
 
-.modal-ticket__summary-item {
-  margin: 0;
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+
+  background: #202020;
+
+  border: 1px solid #303030;
+
+  border-radius: 18px;
+
+  padding: 18px 22px;
+
+  margin-top: 10px;
+
+  margin-bottom: 30px;
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: 600;
 }
 
 /* ========================================
-   MODAL-TICKET__BUY-BTN - элемент (кнопка покупки)
+   BUTTON
 ======================================== */
 
-.modal-ticket__buy-btn {
+.modal-ticket__buy-button {
   width: 100%;
+
   padding: 18px;
-  font-size: var(--font-size-lg);
-  border: none;
-  background: var(--color-accent);
-  color: var(--color-text-primary);
-  font-weight: var(--font-weight-bold);
-  border-radius: var(--border-radius-md);
-  cursor: pointer;
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
+
+  border-radius: 18px;
+
+  font-size: 18px;
+
+  font-weight: 700;
 }
 
-.modal-ticket__buy-btn:hover:not(:disabled) {
-  opacity: 0.92;
-  transform: scale(1.02);
-}
-
-.modal-ticket__buy-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
 
 /* ========================================
-   RESPONSIVE
+   MOBILE
 ======================================== */
 
 @media (max-width: 768px) {
@@ -187,16 +226,16 @@
     padding: 20px;
   }
 
-  .modal-ticket__seats-grid {
+  .modal-ticket__grid {
     gap: 8px;
   }
 
   .modal-ticket__seat {
     height: 38px;
-    font-size: 11px;
+    font-size: 12px;
   }
 
-  .modal-ticket__header-title {
+  .modal-ticket__title {
     font-size: 24px;
   }
 }

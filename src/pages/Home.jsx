@@ -16,24 +16,35 @@ export default function Home() {
   // Загрузка событий
   // =========================
   const loadEvents = async (pageNumber) => {
-    try {
-      setLoading(true);
-      const data = await getEvents(pageNumber);
-      setEvents((prev) => {
-        const merged = [...prev, ...data];
-        // удаляем дубликаты по id
-        const uniqueEvents = merged.filter(
-          (event, index, self) =>
-            index === self.findIndex((e) => e.id === event.id)
-        );
-        return uniqueEvents;
+  try {
+    setLoading(true);
+    const data = await getEvents(pageNumber);
+
+    setEvents((prev) => {
+      const merged = [...prev, ...data];
+
+      // убираем дубликаты
+      const unique = merged.filter(
+        (event, index, self) =>
+          index === self.findIndex((e) => e.id === event.id)
+      );
+
+      // 🔥 СОРТИРОВКА: новые сначала
+      const sorted = unique.sort((a, b) => {
+        const aTime = a.dates?.[0]?.start || a.id;
+        const bTime = b.dates?.[0]?.start || b.id;
+
+        return bTime - aTime; // DESC (новые сверху)
       });
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+
+      return sorted;
+    });
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+};
 
   // =========================
   // Первая загрузка

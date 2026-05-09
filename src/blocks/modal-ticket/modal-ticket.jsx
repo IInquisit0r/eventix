@@ -1,111 +1,98 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import "./modal-ticket.css";
 
 export default function ModalTicket({ event, onClose }) {
-  const rows = 6;
-  const seatsPerRow = 8;
   const [selectedSeats, setSelectedSeats] = useState([]);
 
-  const parsePrice = () => {
-    if (event.is_free) return 0;
-    if (typeof event.price === "number") {
-      return event.price;
-    }
-    if (typeof event.price === "string") {
-      const match = event.price.match(/\d+/);
-      if (match) {
-        return Number(match[0]);
-      }
-    }
-    return 1200;
+  const seats = Array.from({ length: 40 }, (_, i) => i + 1);
+  const occupiedSeats = [3, 7, 12, 18, 25];
+
+  const getPrice = () => {
+  if (event.is_free) return 0;
+
+  const price =
+    event.price ||
+    event.tickets_price ||
+    event.min_price ||
+    "";
+
+  const match = String(price).match(/\d+/);
+
+  return match ? Number(match[0]) : 1200;
+};
+
+  const totalPrice = selectedSeats.length * getPrice();
+
+  const toggleSeat = (seat) => {
+    if (occupiedSeats.includes(seat)) return;
+
+    setSelectedSeats((prev) =>
+      prev.includes(seat)
+        ? prev.filter((s) => s !== seat)
+        : [...prev, seat]
+    );
   };
 
-  const ticketPrice = parsePrice();
+  const handleBuy = () => {
+    alert(
+      `Покупка оформлена!\n\n` +
+      `Места: ${selectedSeats.join(", ")}\n` +
+      `Сумма: ${totalPrice} ₽`
+    );
 
-  const occupiedSeats = ["1-3", "1-4", "2-6", "3-2", "4-7", "5-5"];
-
-  const seats = useMemo(() => {
-    const arr = [];
-    for (let row = 1; row <= rows; row++) {
-      for (let seat = 1; seat <= seatsPerRow; seat++) {
-        arr.push({
-          id: `${row}-${seat}`,
-          row,
-          seat,
-        });
-      }
-    }
-    return arr;
-  }, []);
-
-  const toggleSeat = (seatId) => {
-    if (occupiedSeats.includes(seatId)) return;
-    setSelectedSeats((prev) => {
-      if (prev.includes(seatId)) {
-        return prev.filter((s) => s !== seatId);
-      }
-      return [...prev, seatId];
-    });
+    onClose();
   };
-
-  const totalPrice = selectedSeats.length * ticketPrice;
 
   return (
-    <div className="modal-ticket__overlay" onClick={onClose}>
-      <div
-        className="modal-ticket"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <div className="modal-ticket-overlay" onClick={onClose}>
+      <div className="modal-ticket" onClick={(e) => e.stopPropagation()}>
+
         <div className="modal-ticket__header">
-          <h2 className="modal-ticket__header-title">Выбор мест</h2>
-          <button
-            className="modal-ticket__header-close"
-            onClick={onClose}
-          >
-            ✕
-          </button>
+          <h2>Выбор мест</h2>
+          <button onClick={onClose}>×</button>
         </div>
-        <p className="modal-ticket__event-title">{event.title}</p>
-        <div className="modal-ticket__screen">ЭКРАН / СЦЕНА</div>
-        <div className="modal-ticket__seats-grid">
+
+        <div className="modal-ticket__event-title">
+          {event.title}
+        </div>
+
+        <div className="modal-ticket__grid">
           {seats.map((seat) => {
-            const isOccupied = occupiedSeats.includes(seat.id);
-            const isSelected = selectedSeats.includes(seat.id);
+            const isSelected = selectedSeats.includes(seat);
+            const isOccupied = occupiedSeats.includes(seat);
+
             return (
               <button
-                key={seat.id}
-                className={`modal-ticket__seat ${
-                  isOccupied ? "modal-ticket__seat--occupied" : ""
-                } ${isSelected ? "modal-ticket__seat--selected" : ""}`}
-                onClick={() => toggleSeat(seat.id)}
+                key={seat}
                 disabled={isOccupied}
+                onClick={() => toggleSeat(seat)}
+                className={
+                  isSelected
+                    ? "seat selected"
+                    : isOccupied
+                    ? "seat occupied"
+                    : "seat"
+                }
               >
-                {seat.seat}
+                {seat}
               </button>
             );
           })}
         </div>
+
         <div className="modal-ticket__summary">
-          <p className="modal-ticket__summary-item">
-            Выбрано мест: {selectedSeats.length}
-          </p>
-          <p className="modal-ticket__summary-item">
-            Цена билета: {ticketPrice} ₽
-            <br />
-            Сумма: {totalPrice} ₽
-          </p>
+          <span>Билеты: {selectedSeats.length}</span>
+          <span>Сумма: {totalPrice} ₽</span>
         </div>
+
         <button
-          className="modal-ticket__buy-btn"
-          disabled={!selectedSeats.length}
-          onClick={() => {
-            alert(
-              `Покупка оформлена!\nМеста: ${selectedSeats.join(", ")}`
-            );
-          }}
+          className="modal-ticket__buy-button"
+          disabled={selectedSeats.length === 0}
+          onClick={handleBuy}
         >
-          Оплатить
+          Купить
         </button>
+
       </div>
     </div>
   );
