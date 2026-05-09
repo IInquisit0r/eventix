@@ -1,0 +1,22 @@
+/* ========================================
+   EVENT-GRID BLOCK
+   Контейнер для карточек событий
+======================================== */
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-2xl);
+  padding: 0 var(--spacing-5xl) var(--spacing-5xl);
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+  .event-grid {
+    padding: 0 20px 20px;
+    gap: var(--spacing-xl);
+  }
+}

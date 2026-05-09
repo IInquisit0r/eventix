@@ -1,0 +1,32 @@
+/* ========================================
+   FOOTER BLOCK
+======================================== */
+
+.footer {
+  margin-top: auto;
+  padding: var(--spacing-xl);
+  text-align: center;
+  background: #111;
+  border-top: 1px solid #2a2a2a;
+  color: var(--color-text-darker);
+  font-size: var(--font-size-sm);
+}
+
+/* ========================================
+   FOOTER__TEXT - элемент
+======================================== */
+
+.footer__text {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--spacing-lg);
+  }
+}

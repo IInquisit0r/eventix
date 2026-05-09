@@ -1,0 +1,129 @@
+/* ========================================
+   EVENT-CARD BLOCK
+   Элементы: image-wrapper, image, badge, content, title, text, button
+======================================== */
+
+.event-card {
+  background: var(--color-dark-secondary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-dark-border-light);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ========================================
+   EVENT-CARD__IMAGE-WRAPPER - элемент
+======================================== */
+
+.event-card__image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ========================================
+   EVENT-CARD__IMAGE - элемент
+======================================== */
+
+.event-card__image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ========================================
+   EVENT-CARD__BADGE - элемент (FREE badge)
+======================================== */
+
+.event-card__badge {
+  position: absolute;
+  top: var(--spacing-sm);
+  left: var(--spacing-sm);
+  background: var(--color-success);
+  color: var(--color-text-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ========================================
+   EVENT-CARD__CONTENT - элемент
+======================================== */
+
+.event-card__content {
+  padding: var(--spacing-xl);
+}
+
+/* ========================================
+   EVENT-CARD__TITLE - элемент
+======================================== */
+
+.event-card__title {
+  margin: 0 0 var(--spacing-lg);
+  font-size: var(--font-size-2xl);
+  line-height: 1.35;
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ========================================
+   EVENT-CARD__TEXT - элемент (дата, место)
+======================================== */
+
+.event-card__text {
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.5;
+  margin: 0 0 var(--spacing-sm);
+}
+
+/* ========================================
+   EVENT-CARD__BUTTON - элемент
+======================================== */
+
+.event-card__button {
+  border: none;
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  width: 100%;
+}
+
+.event-card__button:hover {
+  opacity: 0.92;
+  transform: scale(1.02);
+}
+
+.event-card__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+  .event-card__image {
+    height: 200px;
+  }
+
+  .event-card__content {
+    padding: var(--spacing-lg);
+  }
+
+  .event-card__title {
+    font-size: 18px;
+  }
+}

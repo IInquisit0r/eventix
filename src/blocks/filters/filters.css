@@ -1,0 +1,117 @@
+/* ========================================
+   FILTERS BLOCK
+   Элементы: search, toggle, label
+======================================== */
+
+.filters {
+  display: flex;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-4xl) var(--spacing-5xl);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ========================================
+   FILTERS__SEARCH - элемент
+======================================== */
+
+.filters__search {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-dark-border-light);
+  width: 320px;
+  background: var(--color-dark-input);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  transition: border-color var(--transition-normal);
+}
+
+.filters__search::placeholder {
+  color: var(--color-text-muted);
+}
+
+.filters__search:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* ========================================
+   FILTERS__TOGGLE - элемент (контейнер переключателя)
+======================================== */
+
+.filters__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  cursor: pointer;
+  user-select: none;
+}
+
+.filters__toggle:hover .filters__toggle-slider {
+  transform: scale(1.03);
+}
+
+/* ========================================
+   FILTERS__TOGGLE-CHECKBOX - модификатор (скрытый input)
+======================================== */
+
+.filters__toggle-checkbox {
+  display: none;
+}
+
+/* ========================================
+   FILTERS__TOGGLE-SLIDER - элемент (визуальный переключатель)
+======================================== */
+
+.filters__toggle-slider {
+  position: relative;
+  width: 54px;
+  height: 30px;
+  background: var(--color-dark-overlay);
+  border-radius: var(--border-radius-full);
+  transition: background var(--transition-normal), transform var(--transition-normal);
+}
+
+.filters__toggle-slider::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 4px;
+  top: 4px;
+  border-radius: 50%;
+  background: var(--color-text-primary);
+  transition: transform var(--transition-normal);
+}
+
+.filters__toggle-checkbox:checked + .filters__toggle-slider {
+  background: var(--color-success);
+}
+
+.filters__toggle-checkbox:checked + .filters__toggle-slider::before {
+  transform: translateX(24px);
+}
+
+/* ========================================
+   FILTERS__TOGGLE-TEXT - элемент (текст переключателя)
+======================================== */
+
+.filters__toggle-text {
+  color: var(--color-text-light);
+  font-size: var(--font-size-base);
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+  .filters {
+    padding: 20px;
+  }
+
+  .filters__search {
+    width: 100%;
+  }
+}
