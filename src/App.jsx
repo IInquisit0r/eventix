@@ -6,7 +6,7 @@ import "./css/global.css";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/eventix">
       <div className="app">
         <Routes>
           <Route path="/" element={<Home />} />
